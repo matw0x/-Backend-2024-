@@ -1,38 +1,36 @@
 #include <iostream>
 #include <ctime>
+#include <vector>
 
-const size_t sizeArray = 10;
-
-void bubbleSort(int* pArray);
+void bubbleSort(std::vector<int>&);
 
 int main() {
+    std::vector<int> data(10);
+
     srand(time(nullptr));
-    
-    int array[sizeArray];
-    for (size_t i = 0; i != sizeArray; ++i) {
-        array[i] = rand() % 100;
+    for (size_t i = 0; i != data.size(); ++i) {
+        data[i] = rand() % 100;
     }
 
     auto printArray = [&]() {
-        for (size_t i = 0; i != sizeArray; ++i) {
-            std::cout << array[i] << ' ';
+        for (size_t i = 0; i != data.size(); ++i) {
+            std::cout << data[i] << ' ';
         }
         std::cout << '\n';
     };
 
     printArray();
-    bubbleSort(array);
+    bubbleSort(data);
     printArray();
-
 
     return 0;
 }
 
-void bubbleSort(int* pArray) {
-    for (size_t i = 0; i != sizeArray - 1; ++i) {
-        for (size_t j = 0; j != sizeArray - i - 1; ++j) {
-            if (pArray[j] > pArray[j + 1]) {
-                std::swap(pArray[j], pArray[j + 1]);
+void bubbleSort(std::vector<int>& data) {
+    for (size_t i = 0; i != data.size() - 1; ++i) {
+        for (size_t j = 0; j != data.size() - i - 1; ++j) {
+            if (data[j] > data[j + 1]) {
+                std::swap(data[j], data[j + 1]);
             }
         }
     }
